@@ -1,0 +1,51 @@
+{% extends 'patients/base.html' %}
+
+{% block title %}{{ form_title|default:"Form Page" }}{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4 text-center">{{ form_title|default:"Submit Your Details" }}</h2>
+    
+    <div class="card mx-auto shadow" style="max-width: 600px;">
+        <div class="card-body">
+            {% if form.errors %}
+                <div class="alert alert-danger">
+                    <ul class="mb-0">
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        {% endfor %}
+                        {% for error in form.non_field_errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+            
+            <form method="post" action="{% url 'patients:your_correct_view_name' %}" id="form-submit">
+                {% csrf_token %}
+                
+                <!-- Dynamic Form Fields -->
+                {{ form.as_p }}
+                
+                <!-- Submit Button -->
+                <button type="submit" class="btn btn-primary w-100 mt-3" id="submit-button">
+                    Submit
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    const form = document.getElementById('form-submit');
+    const submitButton = document.getElementById('submit-button');
+    
+    form.addEventListener('submit', (event) => {
+        // Disable the button to prevent multiple submissions
+        submitButton.disabled = true;
+        submitButton.innerText = "Submitting...";
+    });
+</script>
+{% endblock %}

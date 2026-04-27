@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+
+# Logs
+*.log
+
+# Selenium profile
+chrome_profile/
+
+# Data files
+scraper_exports/
+archive/
+
+# OS files
+.DS_Store
+
+# Env
+.env

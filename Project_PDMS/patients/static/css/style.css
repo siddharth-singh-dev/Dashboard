@@ -1,0 +1,120 @@
+.single-line-wrap {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Loading screen overlay */
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+/* Spinner styling */
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 6px solid #f3f3f3;
+    border-top: 6px solid #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Dashboard card styling */
+.card {
+    margin: 20px 0;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.card-text {
+    font-size: 1.2rem;
+    color: #555;
+}
+
+.card .btn {
+    margin-top: 10px;
+    font-size: 1rem;
+}
+
+/* Specific styles for different panels */
+.card-primary {
+    border-color: #007bff;
+}
+
+.card-success {
+    border-color: #28a745;
+}
+
+.card-info {
+    border-color: #17a2b8;
+}
+
+.container .row {
+    margin-top: 20px;
+}
+
+/* ================= PRINT STYLES ================= */
+@media print {
+    body {
+        zoom: 70%; /* Scale down to fit more content */
+    }
+
+    table {
+        width: 100%;
+        table-layout: fixed;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        font-size: 10px;
+        padding: 4px;
+        white-space: nowrap;
+        border: 1px solid #000;
+    }
+
+    /* Hide UI elements during print */
+    .card, .btn, #loading-screen, .no-print {
+        display: none !important;
+    }
+
+    .container, .row {
+        margin-top: 0 !important;
+    }
+
+    /* Optional: Force landscape orientation */
+    @page {
+        size: A4 landscape;
+        margin: 10mm;
+    }
+}
